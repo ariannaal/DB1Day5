@@ -88,13 +88,12 @@ public class Application {
 //        pd.save(prestito4);
 
         // rimozione tramite isbn
-
-//        Catalogo elementoRimosso = cd.findByIdAndDelete("978-7-16-148410-0");
-//        if (elementoRimosso != null) {
-//            System.out.println("L'elemento " + elementoRimosso.getTitolo() + " è stato eliminato con successo.");
-//        } else {
-//            System.out.println("Elemento del catalogo non trovato.");
-//        }
+        Catalogo elementoRimosso = cd.findByIdAndDelete("978-5-16-148410-0");
+        if (elementoRimosso != null) {
+            System.out.println("L'elemento " + elementoRimosso.getTitolo() + " è stato eliminato con successo.");
+        } else {
+            System.out.println("Elemento del catalogo non trovato.");
+        }
 
         // ricerca di un elemento del catalogo per isbn
         Catalogo elementoTrovato = cd.findById("978-3-16-148410-0");
