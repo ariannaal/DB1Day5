@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Application {
 
@@ -86,13 +87,34 @@ public class Application {
         Prestito prestito4 = new Prestito(123459, utente1, libro1, LocalDate.of(2024, 10, 4), LocalDate.of(2024, 10, 27));
 //        pd.save(prestito4);
 
+        // rimozione tramite isbn
+
+//        Catalogo elementoRimosso = cd.findByIdAndDelete("978-7-16-148410-0");
+//        if (elementoRimosso != null) {
+//            System.out.println("L'elemento " + elementoRimosso.getTitolo() + " è stato eliminato con successo.");
+//        } else {
+//            System.out.println("Elemento del catalogo non trovato.");
+//        }
+
         // ricerca di un elemento del catalogo per isbn
-        Catalogo foundItem = cd.findById("978-3-16-148410-0");
-        if (foundItem != null) {
-            System.out.println("Elemento del catalogo trovato: " + foundItem.getTitolo());
+        Catalogo elementoTrovato = cd.findById("978-3-16-148410-0");
+        if (elementoTrovato != null) {
+            System.out.println("Elemento del catalogo trovato: " + elementoTrovato.getTitolo());
         } else {
             System.out.println("Elemento del catalogo non trovato.");
         }
+
+        //ricerca tramite anno di pubblicazione
+        List<Catalogo> elementiAnnoPubblicazione = cd.findByAnnoPubblicazione(1949);
+        if (!elementiAnnoPubblicazione.isEmpty()) {
+            System.out.println("Elementi del catalogo con anno di pubblicazione: " + elementiAnnoPubblicazione.stream().count() + ".");
+            for (Catalogo c : elementiAnnoPubblicazione) {
+                System.out.println("Titolo dell'elemento trovato con anno di pubblicazione " + c.getAnnoPubblicazione() + ": " + c.getTitolo());
+            }
+        } else {
+            System.out.println("Nessun elemento trovato per l'anno di pubblicazione " + elementiAnnoPubblicazione + ".");
+        }
+
 
     }
 }
