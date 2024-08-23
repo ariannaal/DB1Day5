@@ -48,4 +48,10 @@ public class CatalogoDAO {
         return query.getResultList();
     }
 
+    public List<Catalogo> findAutore(String autore) {
+        TypedQuery<Catalogo> query = em.createQuery("SELECT c FROM Libro c WHERE c.autore = :autore", Catalogo.class);
+        query.setParameter("autore", autore);
+        return query.getResultList();
+    }
+
 }

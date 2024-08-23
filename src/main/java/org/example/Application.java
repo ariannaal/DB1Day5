@@ -115,6 +115,17 @@ public class Application {
             System.out.println("Nessun elemento trovato per l'anno di pubblicazione " + elementiAnnoPubblicazione + ".");
         }
 
+        // ricerca per autore
+        List<Catalogo> elementiAutore = cd.findAutore("Paolo Cognetti");
+        if (!elementiAutore.isEmpty()) {
+            System.out.println("Numero di elementi trovati: " + elementiAutore.stream().count());
+            for (Catalogo c : elementiAutore) {
+                System.out.println("Titolo dell'elemento trovato con l'autore cercato: " + c.getTitolo());
+            }
+        } else {
+            System.out.println("Nessun elemento trovato per l'autore cercato.");
+        }
+
 
     }
 }
