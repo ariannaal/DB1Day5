@@ -23,14 +23,15 @@ public class CatalogoDAO {
         System.out.println("L'elemento del catalogo \"" + catalogo.getTitolo() + "\" è stato salvato con successo!");
     }
 
-    public Catalogo findById(int id) {
-        Catalogo found = em.find(Catalogo.class, id); // classe dell'identia e id da cercare
-        if (found == null) throw new NotFoundEx(id);
+    // ricerca di un elemento del catalogo per ID
+    public Catalogo findById(String isbn) {
+        Catalogo found = em.find(Catalogo.class, isbn);
+        if (found == null) throw new NotFoundEx(isbn);
         return found;
     }
 
-    public void findByIdAndDelete(int id) {
-        Catalogo found = this.findById(id);
+    public void findByIdAndDelete(String isbn) {
+        Catalogo found = this.findById(isbn);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);

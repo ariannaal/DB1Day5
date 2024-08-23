@@ -3,10 +3,7 @@ package org.example;
 import DAO.CatalogoDAO;
 import DAO.PrestitoDAO;
 import DAO.UtenteDAO;
-import entities.Libro;
-import entities.Prestito;
-import entities.Rivista;
-import entities.Utente;
+import entities.*;
 import enums.Periodicita;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -88,6 +85,14 @@ public class Application {
 
         Prestito prestito4 = new Prestito(123459, utente1, libro1, LocalDate.of(2024, 10, 4), LocalDate.of(2024, 10, 27));
 //        pd.save(prestito4);
+
+        // ricerca di un elemento del catalogo per isbn
+        Catalogo foundItem = cd.findById("978-3-16-148410-0");
+        if (foundItem != null) {
+            System.out.println("Elemento del catalogo trovato: " + foundItem.getTitolo());
+        } else {
+            System.out.println("Elemento del catalogo non trovato.");
+        }
 
     }
 }

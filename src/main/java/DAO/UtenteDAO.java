@@ -22,7 +22,7 @@ public class UtenteDAO {
     }
 
     public Utente findById(int utenteId) {
-        Utente found = em.find(Utente.class, utenteId); // Primo parametro è la classe dell'entità, secondo è l'id da cercare
+        Utente found = em.find(Utente.class, utenteId); //
         if (found == null) throw new NotFoundEx(utenteId);
         return found;
     }
