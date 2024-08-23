@@ -2,7 +2,6 @@ package DAO;
 
 
 import entities.Catalogo;
-import entities.Libro;
 import exceptions.NotFoundEx;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -16,12 +15,12 @@ public class CatalogoDAO {
         this.em = em;
     }
 
-    public void save(Libro libro) {
+    public void save(Catalogo catalogo) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        em.persist(libro);
+        em.persist(catalogo);
         transaction.commit();
-        System.out.println("L'elemento del catalogo \"" + libro.getTitolo() + "\" è stato salvato con successo!");
+        System.out.println("L'elemento del catalogo \"" + catalogo.getTitolo() + "\" è stato salvato con successo!");
     }
 
     public Catalogo findById(int id) {
