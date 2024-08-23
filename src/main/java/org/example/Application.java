@@ -126,6 +126,42 @@ public class Application {
             System.out.println("Nessun elemento trovato per l'autore cercato.");
         }
 
+        // ricerca per titolo o parte di esso
+        List<Catalogo> elementiTitolo = cd.ricercaTitolo("montagne");
+        if (!elementiTitolo.isEmpty()) {
+            System.out.println("Elementi del catalogo con titolo che contiene la parola cercata \"" + elementiTitolo.stream().count() + "\":");
+            for (Catalogo c : elementiTitolo) {
+                System.out.println("Titolo: " + c.getTitolo());
+            }
+        } else {
+            System.out.println("Nessun elemento trovato per il titolo che contiene la parola cercata");
+        }
+
+        // ricerca elementi in prestito con numero tessera
+        List<Prestito> elementiInPrestito = pd.findElementiInPrestito(1001);
+        if (!elementiInPrestito.isEmpty()) {
+            System.out.println("Elementi attualmente in prestito per l'utente con numero di tessera cercato.");
+            for (Prestito p : elementiInPrestito) {
+                System.out.println("Id dell'elemento in prestito: " + p.getId());
+            }
+        } else {
+            System.out.println("Nessun elemento in prestito trovato per l'utente con numero di tessera cercato.");
+        }
+
+
+        // ricerca di tutti i prestiti scaduti e non ancora restituiti
+        List<Prestito> prestitiScaduti = pd.findPrestitiScaduti(1001);
+        if (!prestitiScaduti.isEmpty()) {
+            System.out.println("Prestiti scaduti e non ancora restituiti:" + prestitiScaduti.stream().count());
+            for (Prestito p : prestitiScaduti) {
+                System.out.println("Prestiti scaduti e non ancora restituiti: " + p.getElemento().getTitolo() +
+                        ", data inizio prestito: " + p.getDataInizioPrestito() +
+                        ", data restituzione prevista: " + p.getDataRestituzionePrevista());
+            }
+        } else {
+            System.out.println("Nessun prestito scaduto e non ancora restituito trovato.");
+        }
+
 
     }
 }

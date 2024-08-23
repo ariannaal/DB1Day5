@@ -54,4 +54,10 @@ public class CatalogoDAO {
         return query.getResultList();
     }
 
+    public List<Catalogo> ricercaTitolo(String title) {
+        TypedQuery<Catalogo> query = em.createQuery("SELECT c FROM Catalogo c WHERE LOWER(c.titolo) LIKE LOWER(:title)", Catalogo.class);
+        query.setParameter("title", "%" + title + "%");
+        return query.getResultList();
+    }
+
 }
